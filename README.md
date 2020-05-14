@@ -13,8 +13,18 @@
 Follow the tutorial video to get the configuration done. Essentially, the following steps are to be followed:
 
 1. Define the github repo url/credentials in the Jenkins Freestyle Job.
-2. In the build phase select the `shell script` option and run the `jenkins-cicd.sh` script as below.
-3.  ```
+2. Check the "This project is parameterized" and enable Choice Parameter with valid choices ("Red" or "Blue" in this example.) the build phase select the `shell script` option and add the following:
+```
+if [[ "${choice}" == "Red" ]]; then
+cd html
+mv index.red index.html
+else
+mv index.blue index.html 
+fi
+```
+
+3. In the build phase select the `shell script` option and add the `jenkins-cicd.sh` script as below.
+    ```
     chmod +x jenkins-cicd.sh
     bash jenkins-cicd.sh
     ```
