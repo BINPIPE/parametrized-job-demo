@@ -10,7 +10,15 @@ echo "*******-Starting CI CD Pipeline Tasks-*******"
 echo ""
 echo "..... Build Phase Started :: Compiling Source Code :: ......"
 #compilation not needed here as code is html 
-cd static-site-docker
+
+#workdir=${PWD##*/}
+#
+#if [ "$workdir" == "foldername" ]; then
+#  echo "correct folder"
+#else
+# echo "incorrect folder"
+#fi
+#cd $workdir
 
 #-BUILD (TEST)
 echo ""
@@ -27,13 +35,13 @@ echo "..... Integration Phase Started :: Copying Artifacts :: ......"
 sudo chmod +x wrapper.sh
 echo ""
 echo "..... Provisioning Phase Started :: Building Docker Container :: ......"
-sudo docker build --tag binpipe/static-site-docker .
+sudo docker build --tag binpipe/parametrized-job-demo .
 #if there is a public docker repository push it to public repo here-
-#sudo docker push binpipe/static-site-docker
+#sudo docker push binpipe/parametrized-job-demo
 
 
 #-POSTBUILD (PROVISIONING DEPLOYMENT)
-CONTAINER=static-site-docker
+CONTAINER=parametrized-job-demo
 RUNNING=$(sudo docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
 
 if [ $? -eq 1 ]; then
@@ -45,7 +53,7 @@ fi
     # run your container
     echo ""
 	echo "..... Deployment Phase Started :: Building Docker Container :: ......"
-	sudo docker run -d -p 8888:80 --name static-site-docker static-site-docker
+	sudo docker run -d -p 8888:80 --name parametrized-job-demo parametrized-job-demo
 
 
 #-Completion
