@@ -18,8 +18,11 @@ Follow the tutorial video to get the configuration done. Essentially, the follow
 if [[ "${choice}" == "Red" ]]; then
 cd html
 mv index.red index.html
+cd ..
 else
-mv index.blue index.html 
+cd html
+mv index.blue index.html
+cd ..
 fi
 ```
 
