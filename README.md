@@ -16,13 +16,9 @@ Follow the tutorial video to get the configuration done. Essentially, the follow
 2. Check the "This project is parameterized" and enable Choice Parameter with valid choices ("Red" or "Blue" in this example.) the build phase select the `shell script` option and add the following:
 ```
 if [[ "${choice}" == "Red" ]]; then
-cd html
 mv html/index.red html/index.html
-cd ..
 else
-cd html
 mv html/index.blue html/index.html
-cd ..
 fi
 ```
 
