@@ -32,17 +32,17 @@ echo "Completed!"
 
 echo ""
 echo "..... Integration Phase Started :: Copying Artifacts :: ......"
-sudo chmod +x wrapper.sh
+chmod +x wrapper.sh
 echo ""
 echo "..... Provisioning Phase Started :: Building Docker Container :: ......"
-sudo docker build --tag parametrized-job-demo .
+docker build --tag parametrized-job-demo .
 #if there is a public docker repository push it to public repo here-
 #sudo docker push binpipe/parametrized-job-demo
 
 
 #-POSTBUILD (PROVISIONING DEPLOYMENT)
 CONTAINER=parametrized-job-demo
-RUNNING=$(sudo docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
 
 if [ $? -eq 1 ]; then
   echo "'$CONTAINER' does not exist."
