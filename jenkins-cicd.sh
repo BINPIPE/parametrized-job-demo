@@ -35,7 +35,7 @@ echo "..... Integration Phase Started :: Copying Artifacts :: ......"
 sudo chmod +x wrapper.sh
 echo ""
 echo "..... Provisioning Phase Started :: Building Docker Container :: ......"
-sudo docker build --tag binpipe/parametrized-job-demo .
+sudo docker build --tag parametrized-job-demo .
 #if there is a public docker repository push it to public repo here-
 #sudo docker push binpipe/parametrized-job-demo
 
@@ -47,13 +47,13 @@ RUNNING=$(sudo docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev
 if [ $? -eq 1 ]; then
   echo "'$CONTAINER' does not exist."
 else
-  sudo docker rm -f $CONTAINER
+  docker rm -f $CONTAINER
 fi
 
     # run your container
     echo ""
 	echo "..... Deployment Phase Started :: Building Docker Container :: ......"
-	sudo docker run -d -p 8888:80 --name parametrized-job-demo parametrized-job-demo
+	docker run -d -p 8888:80 --name parametrized-job-demo parametrized-job-demo
 
 
 #-Completion
