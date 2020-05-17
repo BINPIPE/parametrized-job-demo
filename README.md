@@ -17,11 +17,11 @@ Follow the tutorial video to get the configuration done. Essentially, the follow
 ```
 if [[ "${choice}" == "Red" ]]; then
 cd html
-mv index.red index.html
+mv html/index.red html/index.html
 cd ..
 else
 cd html
-mv index.blue index.html
+mv html/index.blue html/index.html
 cd ..
 fi
 ```
