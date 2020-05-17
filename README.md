@@ -15,6 +15,7 @@ Follow the tutorial video to get the configuration done. Essentially, the follow
 1. Define the github repo url/credentials in the Jenkins Freestyle Job.
 2. Check the "This project is parameterized" and enable Choice Parameter with valid choices ("Red" or "Blue" in this example.) the build phase select the `shell script` option and add the following:
 ```
+#!/bin/bash
 if [[ "${choice}" == "Red" ]]; then
 mv html/index.red html/index.html
 else
